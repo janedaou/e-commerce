@@ -1,1 +1,113 @@
-<p>signup works!</p>
+<div class="signup-container">
+    <nav class="breadcrumb">
+        <a href="homepage">Home</a> &gt;
+        <a href="account">Account</a> &gt;
+        <span>Sign Up</span>
+    </nav>
+    <h1>CREATE AN ACCOUNT</h1>
+    <h2>Hello Newbie!</h2>
+    <p>Let’s create a new Jay.co Account, don’t worry it's simple!</p>
+  
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          formControlName="firstName"
+          placeholder="Ex: Jane"
+        />
+        <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched">
+          <small *ngIf="signupForm.get('firstName')?.errors?.['required']">First Name is required</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          id="lastName"
+          formControlName="lastName"
+          placeholder="Ex: Daou"
+        />
+        <div *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched">
+          <small *ngIf="signupForm.get('lastName')?.errors?.['required']">Last Name is required</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Ex: daoujane@gmail.com"
+        />
+        <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+          <small *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</small>
+          <small *ngIf="signupForm.get('email')?.errors?.['email']">Enter a valid email</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="country">Your Country</label>
+        <select id="country" formControlName="country">
+          <option value="" disabled>Select Country</option>
+          <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
+        <div *ngIf="signupForm.get('country')?.invalid && signupForm.get('country')?.touched">
+          <small *ngIf="signupForm.get('country')?.errors?.['required']">Country is required</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Enter Password"
+        />
+        <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+          <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          placeholder="Confirm Password"
+        />
+        <div *ngIf="signupForm.errors?.['passwordMismatch'] && signupForm.get('confirmPassword')?.touched">
+          <small>Passwords do not match</small>
+        </div>
+        <div *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
+          <small *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Tell us about yourself</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Text Area Default Description"
+        ></textarea>
+      </div>
+  
+      <div class="form-group">
+        <input type="checkbox" id="terms" formControlName="terms" />
+        <label for="terms">By creating an account, you agree to our <a href="#">Terms & Conditions</a></label>
+        <div *ngIf="signupForm.get('terms')?.invalid && signupForm.get('terms')?.touched">
+          <small *ngIf="signupForm.get('terms')?.errors?.['required']">You must agree to the terms</small>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="signupForm.invalid">Register</button>
+    </form>
+  </div>
+  

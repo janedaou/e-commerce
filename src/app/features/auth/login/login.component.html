@@ -1,1 +1,53 @@
-<p>login works!</p>
+<div class="sign-in-container">
+  <nav class="breadcrumb">
+      <a href="homepage">Home</a> &gt;
+      <a href="account">Account</a> &gt;
+      <span>Sign In</span>
+  </nav>
+  <h1>SIGN IN</h1>
+  <h2>Welcome Back!</h2>
+  <p>Let’s Login to your Jay.co Account</p>
+  
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="sign-in-options">
+      <div class="social-login">
+        <button class="apple">
+          <img src="assets/icons/apple.png" alt="Apple Icon" class="icon"/>
+          Continue with Apple
+        </button>
+        <button class="google">
+          <img src="assets/icons/google.png" alt="Google Icon" class="icon"/>
+          Continue with Google
+        </button>
+        <button class="facebook">
+          <img src="assets/icons/facebook-icon.png" alt="Facebook Icon" class="icon"/>
+          Continue with Facebook
+        </button>
+      </div>
+      <div class="divider">
+        <span>OR</span>
+      </div>
+      <div class="login-form">
+        <label for="email">Your Email</label>
+        <input id="email" type="email" placeholder="Ex: youremail@example.com" formControlName="email">
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
+          <small *ngIf="loginForm.get('email')?.errors?.['email']">Email format invalid, try again</small>
+        </div>
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Your password" formControlName="password">
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</small>
+        </div>
+        
+        <a href="#" class="forgot-password">Forgot Password?</a>
+        <button class="login-btn" [disabled]="loginForm.invalid">Login</button>
+      </div>
+    </div>
+  </form>
+  
+  <div class="sign-up-link">
+    Don’t have an Account? <a href="signup">Create Account</a>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="filter-sidebar">
+    <h3>Filters</h3>
+  
+    <div class="filter-group">
+      <h4>Price</h4>
+      <input type="range" min="50" max="200" [(ngModel)]="price">
+      <p>Range: ${{ price }}</p>
+    </div>
+  
+    <div class="filter-group">
+      <h4>Colors</h4>
+      <ul>
+        <li *ngFor="let color of colors" [style.background]="color"></li>
+      </ul>
+    </div>
+  
+    <div class="filter-group">
+      <h4>Size</h4>
+      <ul>
+        <li *ngFor="let size of sizes">{{ size }}</li>
+      </ul>
+    </div>
+  
+    <button (click)="applyFilter()">Apply Filter</button>
+  </div>
+  

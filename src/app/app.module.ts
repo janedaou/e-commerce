@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './features/products/product-list/product-list.component';
 import { ProductDetailComponent } from './features/products/product-detail/product-detail.component';
 import { CartListComponent } from './features/cart/cart-list/cart-list.component';
-import { CheckoutComponent } from './features/checkout/checkout/checkout.component';
 import { OrderListComponent } from './features/orders/order-list/order-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
@@ -12,6 +11,12 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { HomepageComponent } from './features/homepage/homepage.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './features/auth/login/login.component';
+import { SignupComponent } from './features/auth/signup/signup.component';
+import { AccountComponent } from './features/account/account.component';
+import { ProductFilterComponent } from './features/products/product-filter/product-filter.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,16 +24,21 @@ import { AppRoutingModule } from './app-routing.module';
     ProductListComponent,
     ProductDetailComponent,
     CartListComponent,
-    CheckoutComponent,
     OrderListComponent,
     HeaderComponent,
     FooterComponent,
-    HomepageComponent
+    HomepageComponent,
+    SignupComponent,
+    LoginComponent,
+    AccountComponent,
+    ProductFilterComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    RouterOutlet
+    RouterOutlet,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

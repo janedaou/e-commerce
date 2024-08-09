@@ -51,6 +51,11 @@
           color: red;
           font-family: 'Oswald', sans-serif;
           font-style: normal;
+          a {color: red;
+            &:hover {
+              text-decoration: underline;
+            }}
+
         }
 
         h3 {
