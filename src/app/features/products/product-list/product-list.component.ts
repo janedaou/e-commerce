@@ -1,5 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './product.model';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  rating: {
+    rate: number;
+  };
+  description?: string;
+  category?: string;
+}
 
 @Component({
   selector: 'app-product-list',
@@ -8,18 +21,25 @@ import { Product } from './product.model';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] = [
-    { name: 'Gradient Graphic T-shirt', price: 145, image: 'assets/product1.png', rating: 3.5 },
-    { name: 'Polo with Tipping Details', price: 180, image: 'assets/product2.png', rating: 4.5, originalPrice: 200, discount: 10 },
-    { name: 'Skinny Fit Jeans', price: 240, image: 'assets/product3.png', rating: 3.5, originalPrice: 260, discount: 20 },
-    // Add more products here
-  ];
-
+  products: Product[] = [];
   pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  constructor() { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.fetchProducts();
+  }
+
+  fetchProducts() {
+    this.http.get<Product[]>('https://fakestoreapi.com/products')
+      .subscribe(data => {
+        this.products = data;
+      });
+  }
+
+  viewProductDetail(product: Product) {
+    this.router.navigate(['/product-detail', product.id]);
+  }
 
   previousPage() {
     // Logic to go to the previous page

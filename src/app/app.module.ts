@@ -17,6 +17,8 @@ import { SignupComponent } from './features/auth/signup/signup.component';
 import { AccountComponent } from './features/account/account.component';
 import { ProductFilterComponent } from './features/products/product-filter/product-filter.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SignupService } from './features/auth/signup/signup.service';
 
 @NgModule({
   declarations: [
@@ -38,9 +40,10 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     RouterOutlet,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

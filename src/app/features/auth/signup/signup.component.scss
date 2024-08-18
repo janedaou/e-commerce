@@ -1,97 +1,96 @@
 .signup-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Inter', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
 
-    .breadcrumb {
-        text-align: left;
-        margin-bottom: 20px;
-        a {
-          color: #333;
+  .breadcrumb {
+      text-align: left;
+      margin-bottom: 20px;
+      a {
+        color: #333;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      span {
+        color: #999;
+      }
+    }
+
+  h1 {
+  font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: #06CAF5;
+  }
+
+  h2 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #333;
+  }
+
+  p {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      a {
+          color: #06CAF5;
           text-decoration: none;
+    
           &:hover {
             text-decoration: underline;
           }
         }
-        span {
-          color: #999;
-        }
-      }
-  
-    h1 {
-    font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: 36px;
-      color: #06CAF5;
     }
 
-    h2 {
-        font-family: 'Oswald', sans-serif;
-        font-weight: 700;
-        font-size: 24px;
-        color: #333;
-    }
-  
-    p {
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
       font-size: 16px;
-      color: #333;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
     }
-  
-    .form-group {
-      margin-bottom: 20px;
-      label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-        a {
-            color: #06CAF5;
-            text-decoration: none;
-      
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-      }
-  
-      input,
-      select,
-      textarea {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-family: 'Inter', sans-serif;
-      }
-  
-      small {
-        color: red;
-        font-size: 12px;
-      }
-    }
-  
-    .form-group:last-of-type {
-      margin-top: 20px;
-    }
-  
-    button {
-      background: #0016A8;
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 62px;
-      cursor: pointer;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-  
-      &:disabled {
-        background: grey;
-        cursor: not-allowed;
-      }
+
+    small {
+      color: red;
+      font-size: 12px;
     }
   }
-  
+
+  .form-group:last-of-type {
+    margin-top: 20px;
+  }
+
+  button {
+    background: #0016A8;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 62px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    &:disabled {
+      background: grey;
+      cursor: not-allowed;
+    }
+  }
+}

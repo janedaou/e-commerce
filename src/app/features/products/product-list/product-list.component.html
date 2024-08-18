@@ -1,47 +1,36 @@
 <div class="product-list-container">
-    <div class="filter-container">
-      <app-product-filter></app-product-filter>
+  <div class="filter-container">
+    <app-product-filter></app-product-filter>
+  </div>
+  
+  <div class="products-container">
+    <div class="products-header">
+      <h2>Casual</h2>
+      <div class="product-count">
+        Showing {{ products.length }} Products
+      </div>
+      <div class="sort-options">
+        Sort by: 
+        <select>
+          <option value="most-popular">Most Popular</option>
+          <option value="price-low-high">Price: Low to High</option>
+          <option value="price-high-low">Price: High to Low</option>
+        </select>
+      </div>
     </div>
-    
-    <div class="products-container">
-      <div class="products-header">
-        <h2>Casual</h2>
-        <div class="product-count">
-          Showing 1-10 of 100 Products
+
+    <div class="products-grid">
+      <!-- Product Item -->
+      <div class="product-card" *ngFor="let product of products">
+        <img [src]="product.image" alt="{{ product.title }}">
+        <h3>{{ product.title }}</h3>
+        <div class="product-price">
+          <span class="current-price">${{ product.price }}</span>
         </div>
-        <div class="sort-options">
-          Sort by: 
-          <select>
-            <option value="most-popular">Most Popular</option>
-            <option value="price-low-high">Price: Low to High</option>
-            <option value="price-high-low">Price: High to Low</option>
-          </select>
+        <div class="product-rating">
+          <span>{{ product.rating }}</span> / 5
         </div>
-      </div>
-  
-      <div class="products-grid">
-        <!-- Product Item -->
-        <div class="product-card" *ngFor="let product of products">
-          <img [src]="product.image" alt="{{ product.name }}">
-          <h3>{{ product.name }}</h3>
-          <div class="product-price">
-            <span class="current-price">${{ product.price }}</span>
-            <span *ngIf="product.originalPrice" class="original-price">${{ product.originalPrice }}</span>
-            <span *ngIf="product.discount" class="discount">{{ product.discount }}% Off</span>
-          </div>
-          <div class="product-rating">
-            <span>{{ product.rating }}</span> / 5
-          </div>
-        </div>
-      </div>
-      
-  
-      <!-- Pagination -->
-      <div class="pagination">
-        <button (click)="previousPage()">Previous</button>
-        <span *ngFor="let page of pages" (click)="goToPage(page)">{{ page }}</span>
-        <button (click)="nextPage()">Next</button>
       </div>
     </div>
   </div>
-  
+</div>

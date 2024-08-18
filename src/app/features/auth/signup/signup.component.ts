@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidatorFn,AbstractControl,ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SignupService } from './signup.service';
+import { SignupRequest } from './models/signupRequest';
+import { SignupResponse } from './models/signupResponse';
 
 @Component({
   selector: 'app-signup',
@@ -35,8 +39,8 @@ export class SignupComponent implements OnInit {
     'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican City', 'Venezuela', 'Vietnam', 'Yemen',
     'Zambia', 'Zimbabwe'
   ];
-  
-  constructor(private fb: FormBuilder) {}
+
+  constructor(private fb: FormBuilder, private signupService: SignupService, private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -62,7 +66,26 @@ export class SignupComponent implements OnInit {
 
   onSubmit(): void {
     if (this.signupForm.valid) {
-      console.log('Form Submitted!', this.signupForm.value);
+      const signupData: SignupRequest = {
+        Firstname: this.signupForm.value.firstName,
+        Lastname: this.signupForm.value.lastName,
+        Email: this.signupForm.value.email,
+        Password: this.signupForm.value.password,
+        RoleName: 'user' // Adjust RoleName as needed
+      };
+
+      this.signupService.signup(signupData).subscribe({
+        next: (response) => {
+          if (response.success) {
+            this.router.navigate(['/login']); // Redirect to login page after successful signup
+          } else {
+            console.error('Signup failed:', response.message);
+          }
+        },
+        error: (error) => {
+          console.error('Error occurred during signup:', error);
+        }
+      });
     }
   }
 }

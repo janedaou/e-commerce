@@ -1,7 +1,7 @@
 <div class="sign-in-container">
   <nav class="breadcrumb">
-      <a href="homepage">Home</a> &gt;
-      <a href="account">Account</a> &gt;
+      <a href="/">Home</a> &gt;
+      <a href="/account">Account</a> &gt;
       <span>Sign In</span>
   </nav>
   <h1>SIGN IN</h1>
@@ -46,8 +46,12 @@
       </div>
     </div>
   </form>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
   
   <div class="sign-up-link">
-    Don’t have an Account? <a href="signup">Create Account</a>
+    Don’t have an Account? <a href="/signup">Create Account</a>
   </div>
 </div>

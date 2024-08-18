@@ -1,1 +1,18 @@
-<p>product-detail works!</p>
+<div *ngIf="product" class="product-detail-container">
+  <div class="product-images">
+    <img [src]="product.image" alt="{{ product.title }}">
+  </div>
+
+  <div class="product-info">
+    <h1>{{ product.title }}</h1>
+    <div class="product-rating">
+      <span>{{ product.rating.rate }}</span> / 5
+    </div>
+    <div class="product-price">
+      <span class="current-price">${{ product.price }}</span>
+    </div>
+    <p>{{ product.description }}</p>
+
+    <button class="add-to-cart-button">Add to Cart</button>
+  </div>
+</div>

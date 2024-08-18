@@ -14,18 +14,17 @@ import { ProductFilterComponent } from './features/products/product-filter/produ
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'homepage', component: HomepageComponent},
+  { path: '', redirectTo: '/homepage', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
   { path: 'account', component: AccountComponent},
   { path: 'products', component: ProductListComponent },
-  { path: 'filter', component: ProductFilterComponent }
-  /*{ path: 'products/:id', component: ProductDetailComponent },
+  { path: 'filter', component: ProductFilterComponent },
   { path: 'cart', component: CartListComponent },
-  { path: 'checkout', component: CheckoutComponent },
-  { path: 'orders', component: OrderListComponent },*/
+  { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'checkout', component: CheckoutComponent }
+  //{ path: 'orders', component: OrderListComponent },
   //{ path: 'orders/:id', component: OrderDetailComponent },
-  //{ path: '', redirectTo: '/homepage', pathMatch: 'full' },
-  //{ path: '**', redirectTo: '/homepage' }
 ];
 
 @NgModule({
