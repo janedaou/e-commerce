@@ -15,10 +15,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './features/auth/login/login.component';
 import { SignupComponent } from './features/auth/signup/signup.component';
 import { AccountComponent } from './features/account/account.component';
-import { ProductFilterComponent } from './features/products/product-filter/product-filter.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupService } from './features/auth/signup/signup.service';
+import { CustomPipe } from './shared/pipes/custom.pipe';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { SignupService } from './features/auth/signup/signup.service';
     SignupComponent,
     LoginComponent,
     AccountComponent,
-    ProductFilterComponent
+    CustomPipe
   ],
   imports: [
     AppRoutingModule,

@@ -4,9 +4,36 @@
   margin: 0 auto;
   padding: 20px;
 
-  .filter-container {
+  .sidebar {
     width: 20%;
     margin-right: 20px;
+
+    h3 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #06CAF5;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        font-size: 16px;
+        color: #333;
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+        transition: color 0.3s ease;
+
+        &.active, &:hover {
+          color: #06CAF5;
+          font-weight: bold;
+        }
+      }
+    }
   }
 
   .products-container {
@@ -19,8 +46,10 @@
       margin-bottom: 20px;
 
       h2 {
-        font-size: 24px;
-        font-weight: bold;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 36px;
+        color: #06CAF5;
       }
 
       .product-count {
@@ -46,6 +75,13 @@
         border: 1px solid #ddd;
         border-radius: 8px;
         text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
 
         img {
           max-width: 100%;

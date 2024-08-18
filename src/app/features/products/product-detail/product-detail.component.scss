@@ -54,3 +54,74 @@
     }
   }
 }
+.similar-items {
+  background-color: white;
+  padding: 40px 20px;
+  text-align: center;
+
+  h1 {
+    color: #06CAF5;
+    margin-bottom: 40px;
+    font-family: 'Oswald', sans-serif;
+    font-style: normal;
+  }
+
+  .products {
+    display: flex;
+    justify-content: space-around;
+
+    .product {
+      text-align: center;
+
+      img {
+        width: 300px;
+        height: 300px;
+        margin-bottom: 10px;
+        border-radius: 15px;
+        background: #F0EEED;
+        border-radius: 20px;
+      }
+
+      h3 {
+        color: black;
+        margin: 0;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+
+      }
+
+      p {
+        color: black;
+        margin: 0;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+
+        span {
+          text-decoration: line-through;
+          color: #999;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  button {
+    background-color: #0016A8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 62px;
+  }
+}

@@ -4,24 +4,6 @@
   padding: 40px 20px;
   text-align: center;
 
-  .breadcrumb {
-    text-align: left;
-    margin-bottom: 20px;
-
-    a {
-      color: #333;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    span {
-      color: #999;
-    }
-  }
-
   h1 {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
