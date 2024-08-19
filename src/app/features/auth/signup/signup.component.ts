@@ -12,6 +12,8 @@ import { SignupResponse } from './models/signupResponse';
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
+  errorMessage: string | null = null;
+  
   countries: string[] = [
     'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 'Argentina',
     'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados',
@@ -74,18 +76,17 @@ export class SignupComponent implements OnInit {
         RoleName: 'user' // Adjust RoleName as needed
       };
 
-      this.signupService.signup(signupData).subscribe({
-        next: (response) => {
-          if (response.success) {
-            this.router.navigate(['/login']); // Redirect to login page after successful signup
-          } else {
-            console.error('Signup failed:', response.message);
-          }
+      this.signupService.signup(signupData).subscribe(
+        response => {
+          console.log('Signup successful', response);
+          // Store token or handle success response
+          this.router.navigate(['/login']);
         },
-        error: (error) => {
-          console.error('Error occurred during signup:', error);
+        error => {
+          console.error('Signup failed', error);
+          this.errorMessage = 'Invalid email. Please try again.';
         }
-      });
+      );
     }
   }
 }

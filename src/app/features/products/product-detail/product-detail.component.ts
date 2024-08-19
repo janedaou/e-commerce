@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 
 interface Product {
   id: number;
@@ -22,6 +23,7 @@ interface Product {
 export class ProductDetailComponent implements OnInit {
 
   product: Product | undefined;
+  similarProducts: Product[] = [];
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -33,9 +35,19 @@ export class ProductDetailComponent implements OnInit {
   }
 
   fetchProductDetail(productId: number) {
-    this.http.get<Product>(`https://fakestoreapi.com/products/${productId}`)
+    this.http.get<Product>(`${environment.apiURL}/${productId}`)
       .subscribe(data => {
         this.product = data;
+        this.fetchSimilarProducts(data.category);
       });
+  }
+
+  fetchSimilarProducts(category?: string) {
+    if (category) {
+      this.http.get<Product[]>(`${environment.apiURL}/category/${category}`)
+        .subscribe(data => {
+          this.similarProducts = data.filter(p => p.id !== this.product?.id);
+        });
+    }
   }
 }

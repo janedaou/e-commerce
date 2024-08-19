@@ -16,28 +16,15 @@
     <button class="add-to-cart-button">Add to Cart</button>
   </div>
 </div>
-<div class="similar-items">
-  <h1>SIMILAR ITEMS</h1>
+
+<div *ngIf="similarProducts.length > 0" class="similar-items">
+  <h1>YOU MAY ALSO LIKE</h1>
   <div class="products">
-    <div class="product">
-      <img src="assets/images/product-1.png" alt="T-shirt with Tape Details">
-      <h3>T-shirt with Tape Details</h3>
-      <p>$120</p>
-    </div>
-    <div class="product">
-      <img src="assets/images/product-2.png" alt="Skinny Fit Jeans">
-      <h3>Skinny Fit Jeans</h3>
-      <p>$240 <span>$260</span></p>
-    </div>
-    <div class="product">
-      <img src="assets/images/product-3.png" alt="Checkered Shirt">
-      <h3>Checkered Shirt</h3>
-      <p>$180</p>
-    </div>
-    <div class="product">
-      <img src="assets/images/product-4.png" alt="Sleeve Striped T-shirt">
-      <h3>Sleeve Striped T-shirt</h3>
-      <p>$130 <span>$160</span></p>
+    <div class="product" *ngFor="let product of similarProducts">
+      <img [src]="product.image" alt="{{ product.title }}">
+      <h3>{{ product.title }}</h3>
+      <p>${{ product.price }}</p>
     </div>
   </div>
-  <a href="products"><button>View All</button></a>
+  <a routerLink="/products"><button>View All</button></a>
+</div>

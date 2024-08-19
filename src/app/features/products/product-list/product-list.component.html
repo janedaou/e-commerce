@@ -25,7 +25,7 @@
 
     <div class="products-grid">
       <!-- Product Item -->
-      <div class="product-card" *ngFor="let product of products" (click)="viewProductDetail(product)">
+      <div *ngFor="let product of products" class="product-card" (click)="goToProductDetail(product.id)">
         <img [src]="product.image" alt="{{ product.title }}">
         <h3>{{ product.title }}</h3>
         <div class="product-price">

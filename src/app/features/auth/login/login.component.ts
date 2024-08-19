@@ -35,7 +35,7 @@ export class LoginComponent {
         response => {
           console.log('Login successful', response);
           // Store token or handle success response
-          this.router.navigate(['/product-list']);
+          this.router.navigate(['/products']);
         },
         error => {
           console.error('Login failed', error);
