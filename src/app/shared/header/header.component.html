@@ -1,5 +1,5 @@
 <div class="header-top" id="header-top">
-  <p>Sign up and get 20% off to your first order. <a href="signup">Sign Up Now</a></p>
+  <p>Sign up and get 20% off your first order. <a href="signup">Sign Up Now</a></p>
   <span class="close" id="close-btn">×</span>
 </div>
 <nav class="navbar">
@@ -12,7 +12,19 @@
     <li><a href="account">Account</a></li>
   </ul>
   <div class="search-container">
-    <input type="text" placeholder="Search for products..." />
+    <input type="text" placeholder="Search for products..." (input)="onSearch($event)" />
+    <div class="search-results" *ngIf="searchResults.length > 0 || searchQuery">
+      <button class="close-search" (click)="clearSearch()">×</button>
+      <ul>
+        <li *ngFor="let product of searchResults" (click)="viewProductDetail(product.id)">
+          <img [src]="product.image" alt="{{ product.title }}" />
+          <span>{{ product.title }}</span>
+        </li>
+      </ul>
+      <div class="search-no-results" *ngIf="searchResults.length === 0 && searchQuery">
+        <p>No products found</p>
+      </div>
+    </div>
   </div>
   <div class="icons">
     <a href="cart"><img src="assets/icons/shopping-cart.png" alt="Cart"></a>
