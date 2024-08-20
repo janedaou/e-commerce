@@ -1,42 +1,53 @@
 .product-detail-container {
   display: flex;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
 
   .product-images {
-    width: 50%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     img {
       max-width: 100%;
       height: auto;
+      border-radius: 10px;
     }
   }
 
   .product-info {
-    width: 50%;
-    padding: 20px;
+    flex: 1.5;
+    padding-left: 40px;
 
     h1 {
-      font-size: 28px;
+      font-size: 40px;
       margin-bottom: 20px;
+      font-family: 'Oswald', sans-serif;
     }
 
     .product-rating {
-      font-size: 18px;
+      font-size: 20px;
       color: #f39c12;
       margin-bottom: 20px;
+      font-family: 'Oswald', sans-serif;
     }
 
     .product-price {
-      font-size: 24px;
+      font-size: 30px;
+      font-family: 'Oswald', sans-serif;
       color: #333;
       margin-bottom: 20px;
     }
 
     p {
-      font-size: 16px;
+      font-size: 20px;
       color: #666;
       margin-bottom: 20px;
+      font-family: 'Inter', sans-serif;
     }
 
     .add-to-cart-button {
@@ -59,6 +70,7 @@
   background-color: white;
   padding: 40px 20px;
   text-align: center;
+  margin-top: 40px;
 
   h1 {
     color: #06CAF5;
@@ -69,42 +81,55 @@
 
   .products {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+    gap: 20px;
 
     .product {
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
       text-align: center;
       cursor: pointer;
+      box-sizing: border-box;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-image-wrapper {
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+      }
 
       img {
-        width: 300px;
-        height: 300px;
-        margin-bottom: 10px;
-        border-radius: 15px;
-        background: #F0EEED;
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 10px;
       }
 
       h3 {
         color: black;
         margin: 0;
-        font-family: 'Inter', sans-serif;
+        font-family: 'Oswald', sans-serif;
         font-weight: 700;
         font-size: 20px;
         line-height: 24px;
       }
 
       p {
-        color: black;
+        color: #333;
         margin: 0;
-        font-family: 'Inter', sans-serif;
+        font-family: 'Oswald', sans-serif;
         font-weight: 700;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 24px;
-
-        span {
-          text-decoration: line-through;
-          color: #999;
-          margin-left: 10px;
-        }
       }
     }
   }
@@ -117,5 +142,9 @@
     cursor: pointer;
     margin-top: 20px;
     border-radius: 62px;
+
+    &:hover {
+      background-color: #0053ba;
+    }
   }
 }

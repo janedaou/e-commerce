@@ -21,7 +21,9 @@
   <h1>YOU MAY ALSO LIKE</h1>
   <div class="products">
     <div class="product" *ngFor="let similarProduct of similarProducts" (click)="viewProductDetail(similarProduct.id)">
-      <img [src]="similarProduct.image" alt="{{ similarProduct.title }}">
+      <div class="product-image-wrapper">
+        <img [src]="similarProduct.image" alt="{{ similarProduct.title }}">
+      </div>
       <h3>{{ similarProduct.title }}</h3>
       <p>${{ similarProduct.price }}</p>
     </div>

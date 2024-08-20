@@ -3,19 +3,20 @@
     <h3>CATEGORIES</h3>
     <ul>
       <li *ngFor="let category of categories" (click)="filterByCategory(category)">
-        {{ category }}
+        {{ category | custom }}
       </li>
     </ul>
   </div>
   <div class="products-container">
     <div class="products-header">
-      <h2>{{ selectedCategory | custom }}</h2> <!-- Use the custom pipe here -->
+      <h2>{{ selectedCategory | custom }}</h2>
       <div class="product-count">
         Showing {{ products.length }} Products
       </div>
       <div class="sort-options">
-        Sort by: 
-        <select (change)="sortProducts($event)">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" (change)="sortProducts($event)">
+          <option value="" disabled selected>Select Option</option>
           <option value="most-popular">Most Popular</option>
           <option value="price-low-high">Price: Low to High</option>
           <option value="price-high-low">Price: High to Low</option>
@@ -26,7 +27,9 @@
     <div class="products-grid">
       <!-- Product Item -->
       <div *ngFor="let product of products" class="product-card" (click)="goToProductDetail(product.id)">
-        <img [src]="product.image" alt="{{ product.title }}">
+        <div class="product-image">
+          <img [src]="product.image" alt="{{ product.title }}">
+        </div>
         <h3>{{ product.title }}</h3>
         <div class="product-price">
           <span class="current-price">${{ product.price }}</span>

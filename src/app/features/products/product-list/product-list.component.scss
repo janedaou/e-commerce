@@ -21,6 +21,7 @@
       padding: 0;
 
       li {
+        font-family: 'Oswald', sans-serif;
         font-size: 16px;
         color: #333;
         padding: 10px;
@@ -54,12 +55,41 @@
 
       .product-count {
         color: #666;
+        font-family: 'Oswald', sans-serif;
       }
 
       .sort-options {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        label {
+          font-family: 'Oswald', sans-serif;
+          font-size: 16px;
+          color: #333;
+        }
+
         select {
-          padding: 5px;
+          padding: 10px;
           font-size: 14px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          background-color: #fff;
+          color: #333;
+          cursor: pointer;
+          outline: none;
+          transition: background-color 0.3s ease, border-color 0.3s ease;
+          font-family: 'Oswald', sans-serif;
+
+          &:focus {
+            border-color: #06CAF5;
+            background-color: #f0f9ff;
+          }
+
+          option {
+            background-color: #fff;
+            color: #333;
+          }
         }
       }
     }
@@ -70,41 +100,53 @@
       gap: 20px;
 
       .product-card {
-        background: #fff;
+        background: #f8f8f8; /* Light grey background */
         padding: 15px;
         border: 1px solid #ddd;
         border-radius: 8px;
         text-align: center;
         cursor: pointer;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 330px; /* Fixed height for uniformity */
 
         &:hover {
           transform: translateY(-5px);
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        img {
-          max-width: 100%;
-          height: auto;
+        .product-image {
+          height: 180px; /* Fixed height for images */
+          display: flex;
+          align-items: center;
+          justify-content: center;
           margin-bottom: 10px;
+
+          img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain; /* Adjust image to fit nicely within the box */
+          }
         }
 
         h3 {
-          font-size: 18px;
+          font-family: 'Oswald', sans-serif;
+          font-size: 15px;
           font-weight: 500;
           color: #333;
           margin-bottom: 10px;
         }
 
         .product-price {
-          font-size: 16px;
-          color: #333;
+          font-family: 'Oswald';
+          font-size: 15px;
+          color: black;
           margin-bottom: 10px;
         }
 
         .product-rating {
-          font-size: 14px;
+          font-size: 13px;
           color: #f39c12;
+          font-family: 'Oswald', sans-serif;
         }
       }
     }

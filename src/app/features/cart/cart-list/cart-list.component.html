@@ -52,7 +52,10 @@
 
     <div *ngIf="cartItems.length === 0" class="empty-cart-message">
       <p>Your cart is currently empty.</p>
-      <a routerLink="/products"><button>Shop Now</button></a>
+      <img src="assets/images/empty-cart.png" alt="Empty Cart" class="empty-cart-image" />
+      <div class="shop-now-button">
+        <a routerLink="/products"><button>Shop Now</button></a>
+      </div>
     </div>
   </div>
 </div>

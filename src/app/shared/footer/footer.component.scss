@@ -34,6 +34,11 @@
           color: #0016A8;
           border-radius: 0 5px 5px 0;
           cursor: pointer;
+
+          &:hover {
+            background-color: #06CAF5;
+            color: white;
+          }
         }
       }
     }
@@ -69,12 +74,11 @@
           margin: 0 0 20px;
           width: 248px;
           height: 66px;
-
-          font-family: 'Inter';
           font-style: normal;
           font-weight: 400;
           font-size: 14px;
           line-height: 22px;
+          font-family: 'Inter', sans-serif;
         }
   
         ul {
@@ -88,6 +92,7 @@
           a {
             color: #555;
             text-decoration: none;
+            font-family: 'Inter', sans-serif;
   
             &:hover {
               text-decoration: underline;
@@ -120,6 +125,8 @@
   
       p {
         margin: 0;
+        font-family: 'Inter', sans-serif;
+        font-weight: bold;
       }
   
       .payment-icons {

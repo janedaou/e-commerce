@@ -19,6 +19,7 @@
   }
 
   p {
+    font-family: 'Oswald', sans-serif;
     font-size: 16px;
     color: #666;
     margin-bottom: 40px;
@@ -33,6 +34,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      
 
       button {
         width: 100%;
@@ -48,6 +50,11 @@
         justify-content: center;
         gap: 10px;
         cursor: pointer;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
 
         .icon {
           width: 24px;
@@ -72,6 +79,7 @@
       label {
         font-weight: bold;
         color: #333;
+        font-family: 'Inter', sans-serif;
       }
 
       input {
@@ -88,6 +96,7 @@
 
       small {
         color: #ff4d4f;
+        font-family: 'Inter', sans-serif;
         font-size: 12px;
         margin-top: -10px;
       }
@@ -99,6 +108,7 @@
         margin-top: -10px;
         margin-bottom: 20px;
         text-decoration: none;
+        font-family: 'Inter', sans-serif;
 
         &:hover {
           text-decoration: underline;
@@ -125,16 +135,19 @@
   .error-message {
     margin-top: 20px;
     color: red;
+    font-family: 'Inter', sans-serif;
   }
 
   .sign-up-link {
     margin-top: 20px;
     font-size: 14px;
     color: #666;
+    font-family: 'Inter', sans-serif;
 
     a {
       color: #06CAF5;
       text-decoration: none;
+      font-family: 'Inter', sans-serif;
 
       &:hover {
         text-decoration: underline;
