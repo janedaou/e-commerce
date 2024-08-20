@@ -1,56 +1,58 @@
 <div class="cart-container">
-    <h2 class="cart-title">MY CART</h2>
-  
-    <div class="cart-content">
-      <div class="cart-items">
-        <div class="cart-item" *ngFor="let item of cartItems">
-          <img [src]="item.imageUrl" alt="{{item.name}}" class="cart-item-image" />
-          
-          <div class="cart-item-details">
-            <h3>{{item.name}}</h3>
-            <p>Size: {{item.size}}</p>
-            <p>Color: {{item.color}}</p>
-            <p class="cart-item-price">${{item.price}}</p>
-          </div>
-  
-          <div class="cart-item-quantity">
-            <button (click)="decrementQuantity(item)">–</button>
-            <span>{{item.quantity}}</span>
-            <button (click)="incrementQuantity(item)">+</button>
-          </div>
-  
-          <button class="cart-item-remove" (click)="removeItem(item)">
-            <i class="fa fa-trash"></i>
-          </button>
+  <h2 class="cart-title">MY CART</h2>
+
+  <div class="cart-content">
+    <div class="cart-items" *ngIf="cartItems.length > 0">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <img [src]="item.image" alt="{{item.title}}" class="cart-item-image" />
+
+        <div class="cart-item-details">
+          <h3>{{item.title}}</h3>
+          <p class="cart-item-price">${{item.price}}</p>
         </div>
-      </div>
-  
-      <div class="order-summary">
-        <h3>Order Summary</h3>
-        <div class="summary-detail">
-          <p>Subtotal</p>
-          <p>${{subtotal}}</p>
+
+        <div class="cart-item-quantity">
+          <button (click)="decrementQuantity(item)">–</button>
+          <span>{{item.quantity}}</span>
+          <button (click)="incrementQuantity(item)">+</button>
         </div>
-        <div class="summary-detail">
-          <p>Discount ({{discountPercent}}%)</p>
-          <p class="text-danger">- ${{discount}}</p>
-        </div>
-        <div class="summary-detail">
-          <p>Delivery Fee</p>
-          <p>${{deliveryFee}}</p>
-        </div>
-        <div class="summary-total">
-          <h4>Total</h4>
-          <h4>${{total}}</h4>
-        </div>
-  
-        <div class="promo-code">
-          <input type="text" placeholder="Add promo code" [(ngModel)]="promoCode" />
-          <button (click)="applyPromoCode()">Apply</button>
-        </div>
-  
-        <button class="checkout-button">Go to Checkout</button>
+
+        <button class="cart-item-remove" (click)="removeItem(item)">
+          <i class="fa fa-trash"></i>
+        </button>
       </div>
     </div>
+
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-detail">
+        <p>Subtotal</p>
+        <p>${{subtotal}}</p>
+      </div>
+      <div *ngIf="discount > 0" class="summary-detail">
+        <p>Discount ({{discountPercent}}%)</p>
+        <p class="text-danger">- ${{discount}}</p>
+      </div>
+      <div class="summary-detail">
+        <p>Delivery Fee</p>
+        <p>${{deliveryFee}}</p>
+      </div>
+      <div class="summary-total">
+        <h4>Total</h4>
+        <h4>${{total}}</h4>
+      </div>
+
+      <div class="promo-code">
+        <input type="text" placeholder="Add promo code" [(ngModel)]="promoCode" />
+        <button (click)="applyPromoCode()">Apply</button>
+      </div>
+
+      <button class="checkout-button" [disabled]="cartItems.length === 0">Go to Checkout</button>
+    </div>
+
+    <div *ngIf="cartItems.length === 0" class="empty-cart-message">
+      <p>Your cart is currently empty.</p>
+      <a routerLink="/products"><button>Shop Now</button></a>
+    </div>
   </div>
-  
+</div>

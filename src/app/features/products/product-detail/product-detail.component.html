@@ -13,18 +13,18 @@
     </div>
     <p>{{ product.description }}</p>
 
-    <button class="add-to-cart-button">Add to Cart</button>
+    <button class="add-to-cart-button" (click)="addToCart(product)">Add to Cart</button>
   </div>
 </div>
 
-<div *ngIf="similarProducts.length > 0" class="similar-items">
+<div class="similar-items">
   <h1>YOU MAY ALSO LIKE</h1>
   <div class="products">
-    <div class="product" *ngFor="let product of similarProducts">
-      <img [src]="product.image" alt="{{ product.title }}">
-      <h3>{{ product.title }}</h3>
-      <p>${{ product.price }}</p>
+    <div class="product" *ngFor="let similarProduct of similarProducts" (click)="viewProductDetail(similarProduct.id)">
+      <img [src]="similarProduct.image" alt="{{ similarProduct.title }}">
+      <h3>{{ similarProduct.title }}</h3>
+      <p>${{ similarProduct.price }}</p>
     </div>
   </div>
-  <a routerLink="/products"><button>View All</button></a>
+  <a href="/products"><button>View All</button></a>
 </div>

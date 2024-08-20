@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { CustomPipe } from '../../../shared/pipes/custom.pipe';
+import { CartService } from '../../../core/services/cart.service';
 
 interface Product {
   id: number;
@@ -27,7 +28,7 @@ export class ProductListComponent implements OnInit {
   categories: string[] = [];
   selectedCategory: string = 'All Products'; // Default category
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.fetchProducts();
@@ -84,5 +85,9 @@ export class ProductListComponent implements OnInit {
 
   goToProductDetail(productId: number) {
     this.router.navigate(['/products', productId]);
+  }
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
   }
 }
