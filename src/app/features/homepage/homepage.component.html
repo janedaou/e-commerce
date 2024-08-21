@@ -1,51 +1,52 @@
 <div class="banner">
-    <div class="banner-content">
-      <h1>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
-      <p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
-      <a href="products"><button>Shop Now</button></a>
-      <div class="stats">
-        <div>
-          <h2>200+</h2>
-          <p>International Brands</p>
-        </div>
-        <div>
-          <h2>2,000+</h2>
-          <p>High-Quality Products</p>
-        </div>
-        <div>
-          <h2>30,000+</h2>
-          <p>Happy Customers</p>
-        </div>
+  <div class="banner-content">
+    <h1>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
+    <p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
+    <a href="products"><button>Shop Now</button></a>
+    <div class="stats">
+      <div>
+        <h2>200+</h2>
+        <p>International Brands</p>
+      </div>
+      <div>
+        <h2>2,000+</h2>
+        <p>High-Quality Products</p>
+      </div>
+      <div>
+        <h2>30,000+</h2>
+        <p>Happy Customers</p>
       </div>
     </div>
-    <div class="banner-image">
-      <img src="assets/images/models.jpeg" alt="Models">
-    </div>
   </div>
-  <div class="men-clothing">
-    <h1>MEN'S CLOTHING</h1>
-    <div class="products">
-      <div class="product" *ngFor="let product of mensClothing">
-        <div class="image-container">
-          <img [src]="product.image" [alt]="product.title">
-        </div>
-        <h3>{{ product.title }}</h3>
-        <p>${{ product.price }}</p>
+  <div class="banner-image">
+    <img src="assets/images/models.jpeg" alt="Models">
+  </div>
+</div>
+
+<div class="men-clothing">
+  <h1>MEN'S CLOTHING</h1>
+  <div class="products">
+    <div class="product" *ngFor="let product of mensClothing" (click)="viewProductDetail(product.id)">
+      <div class="image-container">
+        <img [src]="product.image" [alt]="product.title">
       </div>
+      <h3>{{ product.title }}</h3>
+      <p>${{ product.price }}</p>
     </div>
-    <a href="products"><button>View All</button></a>
   </div>
-  
-  <div class="women-clothing">
-    <h1>WOMEN'S CLOTHING</h1>
-    <div class="products">
-      <div class="product" *ngFor="let product of womensClothing">
-        <div class="image-container">
-          <img [src]="product.image" [alt]="product.title">
-        </div>
-        <h3>{{ product.title }}</h3>
-        <p>${{ product.price }}</p>
+  <a href="products"><button>View All</button></a>
+</div>
+
+<div class="women-clothing">
+  <h1>WOMEN'S CLOTHING</h1>
+  <div class="products">
+    <div class="product" *ngFor="let product of womensClothing" (click)="viewProductDetail(product.id)">
+      <div class="image-container">
+        <img [src]="product.image" [alt]="product.title">
       </div>
+      <h3>{{ product.title }}</h3>
+      <p>${{ product.price }}</p>
     </div>
-    <a href="products"><button>View All</button></a>
   </div>
+  <a href="products"><button>View All</button></a>
+</div>

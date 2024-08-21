@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { CartService } from '../../../core/services/cart.service';
+import { AuthService } from '../../../core/services/auth.service'; // Import AuthService
 
 interface Product {
   id: number;
@@ -30,7 +31,8 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService // Inject AuthService
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +66,12 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
+    if (this.authService.isLoggedIn()) {
+      this.cartService.addToCart(product);
+      this.router.navigate(['/cart']); // Redirect to cart list after adding to cart
+    } else {
+      localStorage.setItem('redirectUrl', this.router.url); // Save the current URL
+      this.router.navigate(['/account']);
+    }
   }
 }

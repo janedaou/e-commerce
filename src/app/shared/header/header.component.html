@@ -10,6 +10,9 @@
     <li><a href="homepage">Home</a></li>
     <li><a href="products">Shop</a></li>
     <li><a href="account">Account</a></li>
+    <li *ngIf="isLoggedIn()">
+      <a href="#" (click)="onLogout()">Logout</a>
+    </li>
   </ul>
   <div class="search-container">
     <input type="text" placeholder="Search for products..." (input)="onSearch($event)" />
@@ -27,7 +30,7 @@
     </div>
   </div>
   <div class="icons">
-    <a href="cart"><img src="assets/icons/shopping-cart.png" alt="Cart"></a>
+    <a href="#" (click)="goToCart($event)"><img src="assets/icons/shopping-cart.png" alt="Cart"></a>
     <a href="account"><img src="assets/icons/user.png" alt="User"></a>
   </div>
 </nav>

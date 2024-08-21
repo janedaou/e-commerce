@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { loginRequest } from './models/loginRequest';
+import { loginResponse } from './models/loginResponse'; // Import the interface
 
 @Component({
   selector: 'app-login',
@@ -32,10 +33,19 @@ export class LoginComponent {
       };
 
       this.loginService.login(loginData).subscribe(
-        response => {
+        (response: loginResponse) => {
           console.log('Login successful', response);
           // Store token or handle success response
-          this.router.navigate(['/products']);
+          localStorage.setItem('token', response.token); // Use the token from the response
+
+          // Redirect to the original product URL or the products page
+          const redirectUrl = localStorage.getItem('redirectUrl');
+          if (redirectUrl) {
+            this.router.navigateByUrl(redirectUrl);
+            localStorage.removeItem('redirectUrl'); // Clear after use
+          } else {
+            this.router.navigate(['/products']);
+          }
         },
         error => {
           console.error('Login failed', error);

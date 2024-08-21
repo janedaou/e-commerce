@@ -7,4 +7,5 @@ export interface loginResponse {
     NotBeforePolicy: number;
     SessionState: string;
     Scope: string;
+    token: string;
 }

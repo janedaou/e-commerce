@@ -9,7 +9,7 @@ export class AuthService {
 
   private user: any;
 
-  private apiUrl = 'https://api.example.com/auth'; 
+  private apiUrl = 'https://api.example.com/auth';
 
   constructor(private http: HttpClient) { }
 
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.user;
+    return this.isLoggedIn(); // Check if token exists
   }
 
   getUserDetails() {
