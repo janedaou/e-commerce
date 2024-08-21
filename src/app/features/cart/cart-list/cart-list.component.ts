@@ -14,6 +14,7 @@ export class CartListComponent implements OnInit {
   deliveryFee: number = 15;
   total: number = 0;
   promoCode: string = '';
+  promoCodeError: string = '';
 
   constructor(private cartService: CartService) {}
 
@@ -41,13 +42,30 @@ export class CartListComponent implements OnInit {
   }
 
   calculateSummary() {
-    this.subtotal = this.cartItems.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
-    this.discount = this.subtotal * (this.discountPercent / 100);
-    this.total = this.subtotal - this.discount + this.deliveryFee;
+    this.subtotal = this.roundToTwoDecimalPlaces(
+      this.cartItems.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0)
+    );
+    this.discount = this.roundToTwoDecimalPlaces(this.subtotal * (this.discountPercent / 100));
+    this.total = this.roundToTwoDecimalPlaces(this.subtotal - this.discount + this.deliveryFee);
   }
 
   applyPromoCode() {
-    this.discountPercent = this.cartService.applyPromoCode(this.promoCode) * 100;
+    const discount = this.cartService.applyPromoCode(this.promoCode);
+    if (discount > 0) {
+      this.discountPercent = discount * 100;
+      this.promoCodeError = '';
+    } else {
+      this.promoCodeError = 'Incorrect promo code';
+      this.discountPercent = 0;
+    }
     this.calculateSummary();
+  }
+
+  isApplyDisabled(): boolean {
+    return this.promoCode.trim() === '';
+  }
+
+  private roundToTwoDecimalPlaces(value: number): number {
+    return Math.round(value * 100) / 100;
   }
 }

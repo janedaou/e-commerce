@@ -1,19 +1,31 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private cartItemsSubject = new BehaviorSubject<any[]>([]);
+  private cartItemsSubject = new BehaviorSubject<any[]>(this.getCartItemsFromStorage());
   cartItems$ = this.cartItemsSubject.asObservable();
 
   private cartItems: any[] = [];
 
-  constructor() {}
+  constructor() {
+    this.cartItems = this.getCartItemsFromStorage();
+    this.cartItemsSubject.next(this.cartItems);
+  }
+
+  private getCartItemsFromStorage(): any[] {
+    const items = localStorage.getItem('cartItems');
+    return items ? JSON.parse(items) : [];
+  }
+
+  private saveCartItemsToStorage() {
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
 
   getCartItems() {
-    return this.cartItemsSubject.value;
+    return this.cartItems;
   }
 
   addToCart(product: any) {
@@ -25,12 +37,14 @@ export class CartService {
       this.cartItems.push(product);
     }
     this.cartItemsSubject.next(this.cartItems);
+    this.saveCartItemsToStorage();
     console.log(`${product.title} added to cart.`);
   }
 
   removeFromCart(product: any) {
     this.cartItems = this.cartItems.filter(item => item.id !== product.id);
     this.cartItemsSubject.next(this.cartItems);
+    this.saveCartItemsToStorage();
   }
 
   updateQuantity(productId: number, quantity: number) {
@@ -42,11 +56,13 @@ export class CartService {
       }
     }
     this.cartItemsSubject.next(this.cartItems);
+    this.saveCartItemsToStorage();
   }
 
   clearCart() {
     this.cartItems = [];
     this.cartItemsSubject.next(this.cartItems);
+    this.saveCartItemsToStorage();
   }
 
   applyPromoCode(code: string): number {

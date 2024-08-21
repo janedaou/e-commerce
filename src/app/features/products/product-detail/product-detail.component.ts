@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { CartService } from '../../../core/services/cart.service';
-
 
 interface Product {
   id: number;
@@ -26,12 +25,13 @@ export class ProductDetailComponent implements OnInit {
 
   product: Product | undefined;
   similarProducts: Product[] = [];
-  @Input() data:any = {}
-  @Output() item = new EventEmitter()
-  cartProducts:any[] =[];
 
-
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private cartService: CartService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router,
+    private cartService: CartService
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -63,16 +63,7 @@ export class ProductDetailComponent implements OnInit {
     this.router.navigate(['/products', productId]);
   }
 
-  /*addToCart(product: Product) {
+  addToCart(product: Product) {
     this.cartService.addToCart(product);
-    alert(`${product.title} has been added to the cart!`);
-  }*/
-
-  add() {
-    this.item.emit(this.data);
-  }
-
-  addToCart(event: any) {
-    localStorage.setItem("cart", event)
   }
 }
