@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
+  private user: any;
+
   private apiUrl = 'https://api.example.com/auth'; 
 
   constructor(private http: HttpClient) { }
@@ -29,5 +31,13 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.user;
+  }
+
+  getUserDetails() {
+    return this.user;
   }
 }

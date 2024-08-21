@@ -8,6 +8,8 @@ import { HomepageComponent } from './features/homepage/homepage.component';
 import { SignupComponent } from './features/auth/signup/signup.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { AccountComponent } from './features/account/account.component';
+import { ProfileComponent } from './features/auth/profile/profile.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -21,7 +23,8 @@ const routes: Routes = [
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'product-detail/:id', component: ProductDetailComponent},
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
