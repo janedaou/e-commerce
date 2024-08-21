@@ -1,31 +1,36 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  private cartItemsSubject = new BehaviorSubject<any[]>([]);
+  cartItems$ = this.cartItemsSubject.asObservable();
+
   private cartItems: any[] = [];
 
   constructor() {}
 
   getCartItems() {
-    return this.cartItems;
+    return this.cartItemsSubject.value;
   }
 
   addToCart(product: any) {
-    // Check if the item already exists in the cart
-    const existingItem = this.cartItems.find(item => item.id === product.id);
-    if (existingItem) {
-      existingItem.quantity = (existingItem.quantity || 1) + 1;
+    const existingProduct = this.cartItems.find(item => item.id === product.id);
+    if (existingProduct) {
+      existingProduct.quantity += 1;
     } else {
-      // Add product with a default quantity of 1
-      this.cartItems.push({ ...product, quantity: 1 });
+      product.quantity = 1;
+      this.cartItems.push(product);
     }
+    this.cartItemsSubject.next(this.cartItems);
     console.log(`${product.title} added to cart.`);
   }
 
   removeFromCart(product: any) {
     this.cartItems = this.cartItems.filter(item => item.id !== product.id);
+    this.cartItemsSubject.next(this.cartItems);
   }
 
   updateQuantity(productId: number, quantity: number) {
@@ -36,10 +41,12 @@ export class CartService {
         this.removeFromCart(cartItem);
       }
     }
+    this.cartItemsSubject.next(this.cartItems);
   }
 
   clearCart() {
     this.cartItems = [];
+    this.cartItemsSubject.next(this.cartItems);
   }
 
   applyPromoCode(code: string): number {

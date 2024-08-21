@@ -1,0 +1,8 @@
+<div class="recent-activity">
+    <h2>RECENT ACTIVITY</h2>
+    <ul>
+      <li *ngFor="let activity of activities">
+        {{ activity.action }} - {{ activity.timestamp | date:'short' }}
+      </li>
+    </ul>
+  </div>

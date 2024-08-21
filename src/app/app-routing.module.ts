@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'cart', component: CartListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'product-detail/:id', component: ProductDetailComponent},
-  { path: 'checkout', component: CheckoutComponent }
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
 ];
 
 @NgModule({

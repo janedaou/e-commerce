@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupService } from './features/auth/signup/signup.service';
 import { CustomPipe } from './shared/pipes/custom.pipe';
-
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { CustomPipe } from './shared/pipes/custom.pipe';
     RouterOutlet,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AdminModule
   ],
   providers: [SignupService],
   bootstrap: [AppComponent]
