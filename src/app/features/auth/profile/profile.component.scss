@@ -1,13 +1,52 @@
 .profile-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+
+  h2 {
+    margin-bottom: 1rem;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 36px;
+      color: #06CAF5;
   }
-  
-  .profile-details p {
-    font-size: 18px;
-    margin-bottom: 10px;
+
+  .form-group {
+    margin-bottom: 1rem;
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .profile-picture-preview {
+      max-width: 100px;
+      border-radius: 50%;
+      margin-top: 1rem;
+    }
   }
-  
+
+  button {
+    padding: 0.5rem 1rem;
+    background-color: #0016A8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+  }
+}

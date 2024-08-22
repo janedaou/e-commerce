@@ -1,9 +1,37 @@
 <div class="profile-container">
-    <h2>My Profile</h2>
-    <div class="profile-details">
-      <p><strong>Name:</strong> {{ user?.name }}</p>
-      <p><strong>Email:</strong> {{ user?.email }}</p>
-      <!-- Add more user details as needed -->
+  <h2><Main>MY PROFILE</Main></h2>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="profilePicture">Profile Picture</label>
+      <input type="file" id="profilePicture" (change)="onProfilePictureChange($event)" />
+      <img *ngIf="profileForm.get('profilePicture')?.value" [src]="profileForm.get('profilePicture')?.value" alt="Profile Picture" class="profile-picture-preview" />
     </div>
-  </div>
-  
+
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" formControlName="firstName" />
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" formControlName="lastName" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" id="country" formControlName="country" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+
+    <button type="submit" [disabled]="profileForm.invalid">Update Profile</button>
+  </form>
+</div>

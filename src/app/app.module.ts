@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignupService } from './features/auth/signup/signup.service';
 import { CustomPipe } from './shared/pipes/custom.pipe';
 import { AdminModule } from './admin/admin.module';
+import { ProfileComponent } from './features/auth/profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { AdminModule } from './admin/admin.module';
     SignupComponent,
     LoginComponent,
     AccountComponent,
-    CustomPipe
+    CustomPipe,
+    ProfileComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../core/services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -7,11 +7,43 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: any;
+  profileForm: FormGroup;
 
-  constructor(private authService: AuthService) { }
+  constructor(private fb: FormBuilder) {
+    this.profileForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      country: [''],
+      description: [''],
+      profilePicture: [null]
+    });
+  }
 
   ngOnInit(): void {
-    this.user = this.authService.getUserDetails(); // Assuming AuthService has a method to get user details
+    // Retrieve user data from local storage
+    const userData = JSON.parse(localStorage.getItem('user') || '{}');
+    this.profileForm.patchValue(userData);
+  }
+
+  onProfilePictureChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.profileForm.patchValue({
+          profilePicture: reader.result
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onSubmit() {
+    if (this.profileForm.valid) {
+      const updatedUserData = this.profileForm.value;
+      // Handle profile update (e.g., send updated data to the server)
+      console.log('Updated user data:', updatedUserData);
+    }
   }
 }

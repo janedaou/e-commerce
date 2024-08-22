@@ -3,23 +3,36 @@
   align-items: center; /* Vertically centers the content */
   max-width: 1200px; /* Adjust based on your layout needs */
   margin: 2rem auto;
-  
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  padding: 1rem;
+
   .ecommerce-image {
     width: 600px; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
     margin-right: 2rem; /* Space between image and profile content */
+
+    @media (max-width: 768px) {
+      width: 100%; /* Make image responsive */
+      margin-right: 0; /* Remove margin on smaller screens */
+      margin-bottom: 1rem; /* Add space below image */
+    }
   }
 
   .profile-container {
     text-align: center;
     max-width: 400px;
-
+    flex: 1; /* Allow container to grow on smaller screens */
+    
     h1 {
       margin-bottom: 1rem;
       font-family: 'Oswald', sans-serif;
       font-weight: 700;
       font-size: 36px;
       color: #06CAF5;
+
+      @media (max-width: 768px) {
+        font-size: 28px; /* Adjust font size for smaller screens */
+      }
     }
 
     p {
@@ -28,19 +41,25 @@
       font-weight: 700;
       font-size: 24px;
       color: #333;
+
+      @media (max-width: 768px) {
+        font-size: 18px; /* Adjust font size for smaller screens */
+      }
     }
 
     .button-group {
       display: flex;
       justify-content: center;
       gap: 1rem;
-
+      flex-direction: column; /* Stack buttons vertically on smaller screens */
+      
       button {
         padding: 0.5rem 1rem;
         font-size: 1rem;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        width: 100%; /* Make buttons full width on smaller screens */
 
         &:first-of-type {
           background-color: #0016A8;
@@ -50,6 +69,11 @@
         &:last-of-type {
           background-color: #1af54d;
           color: #fff;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 0.875rem; /* Adjust font size for smaller screens */
+          padding: 0.5rem; /* Adjust padding for smaller screens */
         }
       }
     }

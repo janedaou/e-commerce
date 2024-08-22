@@ -77,10 +77,17 @@ export class SignupComponent implements OnInit {
       };
 
       this.signupService.signup(signupData).subscribe(
-        response => {
+        (response: SignupResponse) => {
           console.log('Signup successful', response);
-          // Store token or handle success response
-          this.router.navigate(['/login']);
+          // Store user data in local storage
+          localStorage.setItem('user', JSON.stringify({
+            firstName: this.signupForm.value.firstName,
+            lastName: this.signupForm.value.lastName,
+            email: this.signupForm.value.email,
+            country: this.signupForm.value.country,
+            description: this.signupForm.value.description
+          }));
+          this.router.navigate(['/profile']);
         },
         error => {
           console.error('Signup failed', error);

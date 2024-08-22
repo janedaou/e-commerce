@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,9 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private user: any;
-
-  private apiUrl = 'https://api.example.com/auth';
+  private apiUrl = 'http://173.249.40.235:5005/api/user'; // Update with actual API endpoint
 
   constructor(private http: HttpClient) { }
 
@@ -37,7 +35,25 @@ export class AuthService {
     return this.isLoggedIn(); // Check if token exists
   }
 
-  getUserDetails() {
-    return this.user;
+  // New method to get user details
+  getUserDetails(): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiUrl}/profile`, { headers }); // Update with actual API endpoint
   }
+
+  // Method to update user details
+  updateUserDetails(data: any): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.apiUrl}/profile`, data, { headers }); // Update with actual API endpoint
+  }
+
+
+uploadProfilePicture(data: FormData): Observable<any> {
+  const token = this.getToken();
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.post<any>(`${this.apiUrl}/profile-picture`, data, { headers });
+}
+
 }

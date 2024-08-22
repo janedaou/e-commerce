@@ -1,32 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../../core/services/product.service';
-import { AuthService } from '../../core/services/auth.service'; // Import AuthService
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'] // Corrected to 'styleUrls'
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   searchResults: any[] = [];
   searchQuery: string = '';
+  showUserDropdown: boolean = false; // Track the visibility of the user dropdown
+  isHeaderTopHidden: boolean = false;
 
   constructor(
     private productService: ProductService,
     private router: Router,
-    private authService: AuthService // Inject AuthService
-  ) { }
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+    this.checkHeaderTopState();
+
     const closeBtn = document.getElementById('close-btn');
     const headerTop = document.getElementById('header-top');
 
     if (closeBtn && headerTop) {
       closeBtn.addEventListener('click', () => {
         headerTop.classList.add('hidden');
+        localStorage.setItem('headerTopHidden', 'true');
+        this.isHeaderTopHidden = true;
       });
     }
+  }
+
+  checkHeaderTopState() {
+    // Check if the user is logged in
+    if (this.isLoggedIn()) {
+      this.isHeaderTopHidden = true;
+    } else {
+      // Check local storage to see if the header top should be hidden
+      const headerTopHidden = localStorage.getItem('headerTopHidden');
+      this.isHeaderTopHidden = headerTopHidden === 'true';
+    }
+  }
+
+  closeHeaderTop(): void {
+    this.isHeaderTopHidden = true;
+    localStorage.setItem('headerTopHidden', 'true');
   }
 
   onSearch(event: any) {
@@ -43,7 +65,7 @@ export class HeaderComponent implements OnInit {
   }
 
   viewProductDetail(productId: number) {
-    this.clearSearch(); // Clear the search box when a product is selected
+    this.clearSearch();
     this.router.navigate(['/product-detail', productId]);
   }
 
@@ -52,22 +74,40 @@ export class HeaderComponent implements OnInit {
     this.searchResults = [];
   }
 
-  // Add the logout method
   onLogout() {
     this.authService.logout();
-    this.router.navigate(['/login']); // Redirect to login page after logout
+    this.router.navigate(['/account']);
+    this.showUserDropdown = false;
   }
 
   isLoggedIn(): boolean {
-    return this.authService.isLoggedIn(); // Check if the user is logged in
+    return this.authService.isLoggedIn();
   }
 
   goToCart(event: Event) {
-    event.preventDefault(); // Prevent default link behavior
+    event.preventDefault();
     if (this.isLoggedIn()) {
       this.router.navigate(['/cart']);
     } else {
       this.router.navigate(['/account']);
     }
+  }
+
+  onUserIconClick() {
+    if (this.isLoggedIn()) {
+      this.showUserDropdown = !this.showUserDropdown; // Toggle dropdown visibility
+    } else {
+      this.router.navigate(['/account']);
+    }
+  }
+
+  goToProfile() {
+    this.showUserDropdown = false; // Close the dropdown
+    this.router.navigate(['/profile']);
+  }
+
+  goToLogin() {
+    this.showUserDropdown = false; // Close the dropdown
+    this.router.navigate(['/account']);
   }
 }

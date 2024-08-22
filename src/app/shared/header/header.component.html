@@ -1,7 +1,8 @@
-<div class="header-top" id="header-top">
+<div class="header-top" id="header-top" *ngIf="!isHeaderTopHidden">
   <p>Sign up and get 20% off your first order. <a href="signup">Sign Up Now</a></p>
-  <span class="close" id="close-btn">×</span>
+  <span class="close" (click)="closeHeaderTop()">×</span>
 </div>
+
 <nav class="navbar">
   <div class="logo">
     <h1><a href="homepage">JAY.CO</a></h1>
@@ -9,10 +10,6 @@
   <ul class="nav-links">
     <li><a href="homepage">Home</a></li>
     <li><a href="products">Shop</a></li>
-    <li><a href="account">Account</a></li>
-    <li *ngIf="isLoggedIn()">
-      <a href="#" (click)="onLogout()">Logout</a>
-    </li>
   </ul>
   <div class="search-container">
     <input type="text" placeholder="Search for products..." (input)="onSearch($event)" />
@@ -31,6 +28,14 @@
   </div>
   <div class="icons">
     <a href="#" (click)="goToCart($event)"><img src="assets/icons/shopping-cart.png" alt="Cart"></a>
-    <a href="account"><img src="assets/icons/user.png" alt="User"></a>
+    <div class="user-icon" (click)="onUserIconClick()">
+      <img src="assets/icons/user.png" alt="User">
+      <div class="user-dropdown" *ngIf="showUserDropdown">
+        <ul>
+          <li *ngIf="isLoggedIn()" (click)="goToProfile()">Profile</li>
+          <li *ngIf="isLoggedIn()" (click)="onLogout()">Logout</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </nav>
