@@ -29,4 +29,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: janedaou24/myangularapp:latest
+        tags: janedaou2002/myangularapp:latest
